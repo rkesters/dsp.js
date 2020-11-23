@@ -3,3 +3,4 @@ examples/audio
 .project
 *~
 .idea
+dist
