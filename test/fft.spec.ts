@@ -35,7 +35,7 @@ describe('FFT', () => {
 			fft.forward(signal);
 		};
 
-		expect(runTest(calcFFT, iterations)).toBeLessThan(50);
+		expect(runTest(calcFFT, iterations)).toBeLessThan(100);
 	});
 
 	test('correctness', async () => {

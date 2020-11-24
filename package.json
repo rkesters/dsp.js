@@ -1,6 +1,6 @@
 {
 	"name": "@rkesters/dsp.ts",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "Digital Signal Processing for Typescript",
 	"main": "dist/index.js",
 	"directories": {
@@ -40,7 +40,6 @@
 		"quoteProps": "as-needed"
 	},
 	"scripts": {
-		"test": "npx jest",
-		"prepublish": "npm test && npx tsc && npm version patch"
+		"test": "npx jest"
 	}
 }
