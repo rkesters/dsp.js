@@ -16,7 +16,7 @@ describe('ADSR', () => {
 
 		const totalTime = runTest(calcADSR, iterations);
 
-		expect(totalTime).toBeLessThan(50);
+		expect(totalTime).toBeLessThan(60);
 	});
 
 	test('Process', () => {

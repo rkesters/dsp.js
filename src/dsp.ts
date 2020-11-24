@@ -1,5 +1,4 @@
-
-type Buffer = number[] | Float64Array | Float32Array;
+export type Buffer = number[] | Float64Array | Float32Array;
 
 export type deinrleaveArg = {
 	mix: Float64Array;
@@ -18,6 +17,7 @@ export enum Waveforms {
 	TRIANGLE = 2,
 	SAW = 3,
 	SQUARE = 4,
+	COS = 5,
 }
 
 export enum Filters {
@@ -67,28 +67,19 @@ export enum BiquadFiltersArgs {
 }
 
 const deinterleaveChannel = {
-	[Channels.MIX]: (
-		buffer: Buffer,
-		{ mix }: deinrleaveArg,
-	) => {
+	[Channels.MIX]: (buffer: Buffer, { mix }: deinrleaveArg) => {
 		for (let i = 0, len = buffer.length / 2; i < len; i++) {
 			mix[i] = (buffer[2 * i] + buffer[2 * i + 1]) / 2;
 		}
 		return mix;
 	},
-	[Channels.LEFT]: (
-		buffer: Buffer,
-		{ left }: deinrleaveArg,
-	) => {
+	[Channels.LEFT]: (buffer: Buffer, { left }: deinrleaveArg) => {
 		for (let i = 0, len = buffer.length / 2; i < len; i++) {
 			left[i] = buffer[2 * i];
 		}
 		return left;
 	},
-	[Channels.RIGHT]: (
-		buffer: Buffer,
-		{ right }: deinrleaveArg,
-	) => {
+	[Channels.RIGHT]: (buffer: Buffer, { right }: deinrleaveArg) => {
 		for (let i = 0, len = buffer.length / 2; i < len; i++) {
 			right[i] = buffer[2 * i + 1];
 		}
@@ -118,10 +109,7 @@ export function invert(buffer: number[]): number[] {
  *
  * @returns The stereo interleaved buffer
  */
-export function interleave(
-	left: Buffer,
-	right: Buffer,
-): Float64Array {
+export function interleave(left: Buffer, right: Buffer): Float64Array {
 	if (left.length !== right.length) {
 		throw 'Can not interleave. Channel lengths differ.';
 	}
@@ -144,10 +132,7 @@ export function interleave(
  * @returns an Array containing left and right channels
  */
 export function deinterleave(buffer: Buffer): Float64Array[];
-export function deinterleave(
-	buffer: Buffer,
-	channel: Channels,
-): Float64Array;
+export function deinterleave(buffer: Buffer, channel: Channels): Float64Array;
 export function deinterleave(
 	buffer: Buffer,
 	channel?: Channels,

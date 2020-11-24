@@ -1,5 +1,5 @@
 import { FourierTransform } from './FourierTransform';
-
+import { Buffer } from './dsp';
 /**
  * RFFT is a class for calculating the Discrete Fourier Transform of a signal
  * with the Fast Fourier Transform algorithm.
@@ -117,7 +117,7 @@ export class RFFT extends FourierTransform {
 	//             ...
 	// trans[n-1]   = im[1]
 
-	public forward(buffer: number[]) {
+	public forward(buffer: Buffer) {
 		let n = this.bufferSize,
 			spectrum = this.spectrum,
 			x = this.trans,

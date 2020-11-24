@@ -29,27 +29,21 @@ export class Oscillator {
 		protected amplitude: number,
 		protected bufferSize: number,
 		protected sampleRate: number,
+		protected theta: number = 0,
 	) {
-		this.frequency = frequency;
-		this.amplitude = amplitude;
-		this.bufferSize = bufferSize;
-		this.sampleRate = sampleRate;
-		//this.pulseWidth = pulseWidth;
 		this.frameCount = 0;
-
 		this.waveTableLength = 2048;
-
 		this.cyclesPerSample = frequency / sampleRate;
 
 		this.signal = new Float64Array(bufferSize);
 		this.envelope = null;
-
 		this.generateWaveTable();
+
 		this.waveTable = Oscillator.WaveTable[this.type];
 	}
 
 	protected generateWaveTable() {
-		if (Oscillator.WaveTable[this.type]) {
+		if (Oscillator.WaveTable && Oscillator.WaveTable[this.type]) {
 			return;
 		}
 		const table = new Float64Array(2048);
@@ -73,6 +67,8 @@ export class Oscillator {
 				return Oscillator.Saw(step);
 			case Waveforms.SQUARE:
 				return Oscillator.Square(step);
+			case Waveforms.COS:
+				return Oscillator.Cos(step);
 			default:
 			case Waveforms.SINE:
 				return Oscillator.Sine(step);
@@ -162,6 +158,10 @@ export class Oscillator {
 
 	public static Sine(step: number) {
 		return Math.sin(TWO_PI * step);
+	}
+
+	public static Cos(step: number, theta: number = 0) {
+		return Math.cos(TWO_PI * step + theta);
 	}
 
 	public static Square(step: number) {

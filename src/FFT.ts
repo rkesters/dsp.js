@@ -1,5 +1,5 @@
 import { FourierTransform } from './FourierTransform';
-
+import { Buffer } from './dsp';
 /**
  * FFT is a class for calculating the Discrete Fourier Transform of a signal
  * with the Fast Fourier Transform algorithm.
@@ -49,7 +49,7 @@ export class FFT extends FourierTransform {
 	 *
 	 * @returns The frequency spectrum array
 	 */
-	public forward(buffer: number[]) {
+	public forward(buffer: Buffer): Float64Array {
 		// Locally scope letiables for speed up
 		let bufferSize = this.bufferSize,
 			cosTable = this.cosTable,

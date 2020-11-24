@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ADSR Act 1`] = `
+exports[`ADSR Process 1`] = `
 Float64Array [
   -0,
   -9.224372022078719e-14,

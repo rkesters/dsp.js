@@ -30,7 +30,7 @@ export abstract class FourierTransform {
 		return this.bandwidth * index + this.bandwidth / 2;
 	}
 
-	public calculateSpectrum() {
+	public calculateSpectrum(): Float64Array {
 		let spectrum = this.spectrum,
 			real = this.real,
 			imag = this.imag,
@@ -52,5 +52,6 @@ export abstract class FourierTransform {
 
 			spectrum[i] = mag;
 		}
+		return spectrum;
 	}
 }
