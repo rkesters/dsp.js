@@ -1,28 +1,27 @@
 {
-	"name": "dsp.js",
-	"version": "1.0.0",
-	"description": "Digital Signal Processing for Javascript",
+	"name": "dsp.ts",
+	"version": "0.0.1",
+	"description": "Digital Signal Processing for Typescript",
 	"main": "dist/index.js",
 	"directories": {
-		"example": "examples",
-		"test": "test",
 		"dist": "dist"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/corbanbrook/dsp.js.git"
+		"url": "git+https://github.com/rkesters/dsp.js.git"
 	},
 	"keywords": [
 		"dsp",
 		"dft",
-		"fft"
+		"fft",
+		"typescript"
 	],
-	"author": "Corban Brook",
+	"author": "Corban Brook, Robert Kesterson",
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/corbanbrook/dsp.js/issues"
+		"url": "https://github.com/rkesters/dsp.js/issues"
 	},
-	"homepage": "https://github.com/corbanbrook/dsp.js#readme",
+	"homepage": "https://github.com/rkesters/dsp.js#readme",
 	"devDependencies": {
 		"@stoqey/gnuplot": "0.0.3",
 		"@types/jest": "^26.0.15",
@@ -39,5 +38,9 @@
 		"semi": true,
 		"singleQuote": true,
 		"quoteProps": "as-needed"
+	},
+	"scripts": {
+		"test": "npx jest",
+		"prepublish": "npm test && npx tsc && npm version patch"
 	}
 }
